@@ -1,0 +1,46 @@
+from functools import reduce
+
+
+def is_same_language(lst):
+    return (
+        reduce(
+            lambda acc, val: acc if acc == val["language"] else None,
+            lst,
+            lst[0]["language"],
+        )
+        != None
+    )
+
+# Better solution
+# def is_same_language(lst):
+#     return len(set(i["language"] for i in lst)) == 1
+
+
+list1 = [
+    {
+        "firstName": "Daniel",
+        "lastName": "J.",
+        "country": "Aruba",
+        "continent": "Americas",
+        "age": 42,
+        "language": "JavaScript",
+    },
+    {
+        "firstName": "Kseniya",
+        "lastName": "T.",
+        "country": "Belarus",
+        "continent": "Europe",
+        "age": 22,
+        "language": "JavaScript",
+    },
+    {
+        "firstName": "Hanna",
+        "lastName": "L.",
+        "country": "Hungary",
+        "continent": "Europe",
+        "age": 65,
+        "language": "JavaScript",
+    },
+]
+
+print(is_same_language(list1))
