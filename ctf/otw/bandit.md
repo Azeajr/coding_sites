@@ -1,0 +1,56 @@
+# Over the Wire Wargame
+
+## Bandit
+
+- bandit0
+  - description:
+    - `cat readme`
+  - ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+- bandit1
+  - description:
+    - `cat ./-`
+  - 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+- bandit2
+  - description:
+    - `cat spaces\ in\ this\ filename`
+  - MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+- bandit3
+  - description:
+    - `cat ./...Hiding-From-You`
+  - 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+- bandit4
+  - description:
+    - `cat $(file inhere/* | grep "ASCII text" | cut -d: -f1)`
+  - 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+- bandit5
+  - description:
+    - `du -b inhere/**/** inhere/**/.* | awk '$1 == 1033 {system("cat \""$2"\"")}`
+  - HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+- bandit6
+  - description:
+    - `find / -type f 2>/dev/null | xargs du -b 2>/dev/null | awk '$1 == 33 {print $2}' | xargs -I {} ls -l {} 2>/dev/null | grep "bandit7 bandit6" | awk '{system("cat \"" $NF "\"")}'`
+  - morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+- bandit7
+  - description:
+    - `cat data.txt | grep millionth`
+  - dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+- bandit8
+  - description:
+    - `sort data.txt | uniq -u`
+  - 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+- bandit9
+  - description:
+    - `strings data.txt | grep ==`
+  - FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+- bandit10
+  - description:
+    - `base64 -d data.txt`
+  - dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+- bandit11
+  - description:
+    - `cat data.txt | tr  '[:lower:]' 'nopqrstuvwxyzabcdefghijklm' | tr '[:upper:]' 'NOPQRSTUVWXYZABCDEFGHIJKLM'`
+  - 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+- bandit12
+  - description:
+    - ``
+  - FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
