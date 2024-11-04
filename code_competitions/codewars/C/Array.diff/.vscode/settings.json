@@ -1,0 +1,13 @@
+{
+  "files.associations": {
+    "*.s": "gas",
+    "*.nasm": "asm",
+    "array": "cpp",
+    "bitset": "cpp",
+    "string_view": "cpp",
+    "initializer_list": "cpp",
+    "ranges": "cpp",
+    "span": "cpp",
+    "valarray": "cpp"
+  }
+}
