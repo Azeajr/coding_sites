@@ -2,12 +2,19 @@
 #include <stdlib.h>
 
 void to_camel_case(const char *text, char *camel) {
+  if (text == NULL || camel == NULL)
+    return;
 
-  for (int i = 0; text[i]; i++) {
-    if (text[i] == '_' || text[i] == '-') {
-      *(camel++) = toupper(text[++i]);
-    } else
-      *(camel++) = text[i];
+  while (*text) {
+    if (*text == '_' || *text == '-') {
+      text++;
+      if (*text) {
+        *camel++ = toupper((unsigned char)*text);
+      }
+    } else {
+      *camel++ = *text;
+    }
+    text++;
   }
   *camel = '\0';
 }
