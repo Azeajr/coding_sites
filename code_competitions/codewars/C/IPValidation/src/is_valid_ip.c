@@ -1,24 +1,25 @@
+#include <stdio.h>
 #include <regex.h>
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 bool is_valid_ip(const char *addr) {
+    regex_t regex;
+    const char *pattern = "^(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?|0)\\."
+                          "(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?|0)\\."
+                          "(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?|0)\\."
+                          "(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?|0)$";
 
-  regex_t reegex;
+    // Compile the regular expression
+    int compile_err = regcomp(&regex, pattern, REG_EXTENDED);
+    if (compile_err != 0) {
+        fprintf(stderr, "Could not compile regex\n");
+        return false;
+    }
 
-  int value = regcomp(&reegex,
-                      "^(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?|0)\\."
-                      "(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?|0)\\."
-                      "(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?|0)\\."
-                      "(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?|0)$",
-                      REG_EXTENDED);
-  if (value) {
-    fprintf(stderr, "Could not compile regex\n");
-    exit(1);
-  }
-  value = regexec(&reegex, addr, 0, NULL, 0);
-  regfree(&reegex);
+    // Execute the regular expression
+    int exec_err = regexec(&regex, addr, 0, NULL, 0);
+    regfree(&regex); // Free the compiled regular expression
 
-  return value == 0;
+    return exec_err == 0;
 }
