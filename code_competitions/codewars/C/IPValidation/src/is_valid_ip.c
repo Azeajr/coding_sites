@@ -8,7 +8,8 @@
  * @param addr The string representing the IP address to validate.
  * @return 1 if valid, 0 otherwise.
  */
-int is_valid_ip(const char *addr) {
+// Implementation 1: Direct Integer Parsing
+int is_valid_ip_v1(const char *addr) {
   if (addr == NULL) {
     return 0;
   }
@@ -78,4 +79,123 @@ int is_valid_ip(const char *addr) {
   }
 
   return 1;
+}
+
+// Implementation 2: String Extraction
+int is_valid_ip_v2(const char *addr) {
+  if (addr == NULL) {
+    return 0;
+  }
+
+  size_t len = strlen(addr);
+  if (len < 7 || len > 15) {
+    return 0;
+  }
+
+  char octet1[4], octet2[4], octet3[4], octet4[4];
+  int chars_consumed = 0;
+
+  int result = sscanf(addr, "%3[0-9].%3[0-9].%3[0-9].%3[0-9]%n", octet1, octet2,
+                      octet3, octet4, &chars_consumed);
+
+  if (result != 4) {
+    return 0;
+  }
+
+  if (chars_consumed != (int)len) {
+    return 0;
+  }
+
+  const char *octets[4] = {octet1, octet2, octet3, octet4};
+
+  for (int i = 0; i < 4; i++) {
+    const char *octet = octets[i];
+    size_t octet_len = strlen(octet);
+
+    if (octet_len == 0 || octet_len > 3) {
+      return 0;
+    }
+
+    if (octet_len > 1 && octet[0] == '0') {
+      return 0;
+    }
+
+    int num = 0;
+    for (size_t j = 0; j < octet_len; j++) {
+      if (!isdigit((unsigned char)octet[j])) {
+        return 0;
+      }
+      num = num * 10 + (octet[j] - '0');
+    }
+
+    if (num > 255) {
+      return 0;
+    }
+  }
+
+  return 1;
+}
+// Implementation 3: Manual Parsing
+int is_valid_ip_v3(const char *addr) {
+    if (addr == NULL) {
+        return 0;
+    }
+
+    int num = 0;
+    int dots = 0;
+    const char *ptr = addr;
+    const char *start = addr;
+
+    while (*ptr) {
+        if (*ptr == '.') {
+            // Empty octet (consecutive dots or leading/trailing dot)
+            if (ptr == start) {
+                return 0;
+            }
+            // Leading zero in octet (except for zero itself)
+            if (start[0] == '0' && ptr - start > 1) {
+                return 0;
+            }
+            // Octet value out of range
+            if (num < 0 || num > 255) {
+                return 0;
+            }
+            dots++;
+            if (dots > 3) {
+                return 0;
+            }
+            num = 0;
+            ptr++;
+            start = ptr;
+            continue;
+        }
+
+        if (!isdigit((unsigned char)*ptr)) {
+            return 0;
+        }
+
+        num = num * 10 + (*ptr - '0');
+        // Early range check to avoid integer overflow
+        if (num > 255) {
+            return 0;
+        }
+
+        ptr++;
+    }
+
+    // Final octet checks after the loop ends
+    if (dots != 3) {
+        return 0;
+    }
+    if (ptr == start) {
+        return 0;  // Empty last octet
+    }
+    if (start[0] == '0' && ptr - start > 1) {
+        return 0;  // Leading zero in last octet
+    }
+    if (num < 0 || num > 255) {
+        return 0;
+    }
+
+    return 1;
 }

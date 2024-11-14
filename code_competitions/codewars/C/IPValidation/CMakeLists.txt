@@ -23,11 +23,18 @@ FetchContent_MakeAvailable(googletest)
 
 # Include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/benchmarks)
 
 add_library(is_valid_ip src/is_valid_ip.c)
 
 add_executable(test_is_valid_ip tests/test_is_valid_ip.cc)
 target_link_libraries(test_is_valid_ip gtest_main is_valid_ip)
+
+add_executable(benchmark benchmarks/benchmark.c)
+target_link_libraries(benchmark is_valid_ip)
+
+# Optionally, add include directories for benchmark if needed
+target_include_directories(benchmark PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/benchmark)
 
 enable_testing()
 include(GoogleTest)
