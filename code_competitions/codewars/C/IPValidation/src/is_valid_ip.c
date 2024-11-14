@@ -1,6 +1,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
+#include <arpa/inet.h>
 
 /**
  * Validates whether the given string is a valid IPv4 address.
@@ -198,4 +199,11 @@ int is_valid_ip_v3(const char *addr) {
     }
 
     return 1;
+}
+
+
+/* Return 1 is addr is a valid IP address, return 0 otherwise */
+int is_valid_ip_v4(const char *addr) {
+  struct sockaddr_in sockaddr;
+  return inet_pton(AF_INET, addr, &(sockaddr.sin_addr)) ? 1 : 0;
 }

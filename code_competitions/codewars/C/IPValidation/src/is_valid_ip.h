@@ -8,6 +8,7 @@ extern "C" {
 int is_valid_ip_v1(const char *addr);
 int is_valid_ip_v2(const char *addr);
 int is_valid_ip_v3(const char *addr);
+int is_valid_ip_v4(const char *addr);
 
 #ifdef __cplusplus
 }

@@ -63,5 +63,8 @@ int main() {
     // Run benchmark for Implementation 3
     benchmark(is_valid_ip_v3, "is_valid_ip_v3", iterations);
 
+    // Run benchmark for Implementation 4
+    benchmark(is_valid_ip_v4, "is_valid_ip_v4", iterations);
+
     return 0;
 }

@@ -30,6 +30,7 @@ std::vector<IsValidIpTestParam> getTestParams() {
   params.push_back(IsValidIpTestParam{is_valid_ip_v1, "is_valid_ip_v1"});
   params.push_back(IsValidIpTestParam{is_valid_ip_v2, "is_valid_ip_v2"});
   params.push_back(IsValidIpTestParam{is_valid_ip_v3, "is_valid_ip_v3"});
+  params.push_back(IsValidIpTestParam{is_valid_ip_v4, "is_valid_ip_v4"});
   // Add more implementations here if available
   return params;
 }
