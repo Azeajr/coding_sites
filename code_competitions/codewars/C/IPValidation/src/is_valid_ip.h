@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-bool is_valid_ip(const char *addr);
+int is_valid_ip(const char *addr);
 
 #ifdef __cplusplus
 }
