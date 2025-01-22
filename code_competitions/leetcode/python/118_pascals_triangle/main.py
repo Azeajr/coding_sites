@@ -54,22 +54,21 @@ def _():
 
     class Solution:
         def generate(self, numRows: int) -> list[list[int]]:
-            dp = [None] * max((numRows + 1), 3)
-            dp[1] = [[1]]
-            dp[2] = [[1], [1, 1]]
-            if numRows > 0 and numRows <= 2:
-                return dp[numRows]
+            dp = [[1]]
+            if numRows == 1:
+                return dp
 
-            for i in range(3, numRows + 1):
-                if dp[i - 1]:
-                    temp = [
-                        first + second
-                        for first, second in zip(dp[i - 1][-1], dp[i - 1][-1][1:])
+            for _ in range(1, numRows):
+                last_row = dp[-1]
+                dp.append(
+                    [1]
+                    + [
+                        last_row[i] + last_row[i + 1]
+                        for i in range(len(last_row) - 1)
                     ]
-
-                    dp[i] = dp[i - 1] + [[1] + temp + [1]]
-
-            return dp[numRows]
+                    + [1]
+                )
+            return dp
     return NamedTuple, Solution, ic
 
 
