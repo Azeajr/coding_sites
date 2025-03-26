@@ -1,13 +1,15 @@
 import unittest
 
 
-# A pair (i, j) is called good if nums[i] == nums[j] and i < j.
 def numIdenticalPairs(nums: list[int]) -> int:
+    freq: dict[int, int] = {}
     count = 0
-    for j in range(len(nums)):
-        for i in range(j):
-            if nums[i] == nums[j]:
-                count += 1
+    for num in nums:
+        if num in freq:
+            count += freq[num]
+            freq[num] += 1
+        else:
+            freq[num] = 1
     return count
 
 
