@@ -2,14 +2,15 @@ import unittest
 
 
 def getSneakyNumbers(nums: list[int]) -> list[int]:
-    temp = {}
-    sneaky_numbers = []
-
+    seen: set[int] = set()
+    sneaky_numbers: list[int] = []
+    append_sneaky_numbers = sneaky_numbers.append
+    seen_add = seen.add
     for num in nums:
-        if num not in temp:
-            temp[num] = True
+        if num in seen:
+            append_sneaky_numbers(num)
         else:
-            sneaky_numbers.append(num)
+            seen_add(num)
 
     return sneaky_numbers
 
