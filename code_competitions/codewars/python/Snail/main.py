@@ -15,7 +15,7 @@ def snail(snail_map: list[list[int]]) -> list[int]:
     output = []
 
     while data.size:
-        output.extend(map(int, data[0]))
+        output += data[0].tolist()
         data = np.rot90(data[1:])
 
     return output
