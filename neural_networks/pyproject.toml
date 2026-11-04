@@ -1,0 +1,23 @@
+[project]
+name = "neural-networks"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Azeajr", email = "8389312+Azeajr@users.noreply.github.com" }
+]
+requires-python = ">=3.15"
+dependencies = [
+    "marimo>=0.25.2",
+    "matplotlib>=3.11.2",
+    "micrograd>=0.1.0",
+    "numpy>=2.5.4",
+]
+
+[dependency-groups]
+dev = [
+    "python-lsp-ruff>=2.3.4",
+    "python-lsp-server>=1.15.0",
+    "ruff>=0.17.3",
+    "websockets>=17.4",
+]
